@@ -1,6 +1,6 @@
-# Event Master
+![image](https://github.com/JuanSebastianGrajales/Proyecto-Final-WWW-EventMaster-Grajales-Frontend/assets/150858459/b2fff4fe-012e-4183-b887-9dce2a038e28)# Event Master
 
-![Logo](src/assets/Auth/logo.svg)
+![Logo](src/assets/logo.svg)
 
 [![Ir a Invessoft](https://img.shields.io/badge/Ir%20al%20sitio%20de-Produccion-bf0413?style=for-the-badge)]( 'Producción')
 
