@@ -65,7 +65,7 @@ const AddPlaces = ({ handleToggleMarker, placeName, markerAux, setMarkerAux, set
     }
   };
 
-  return userData ? (
+  return (
     <div className={`w-full px-3 mb-4 mt-3 items-center relative ${isToggledMarker ? 'h-6' : 'h-auto'} lg:h-auto`}>
       <div className="w-full items-center text-center justify-center pb-3">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
@@ -212,8 +212,6 @@ const AddPlaces = ({ handleToggleMarker, placeName, markerAux, setMarkerAux, set
         </form>
       </div>
     </div>
-  ) : (
-    <></>
   );
 };
 

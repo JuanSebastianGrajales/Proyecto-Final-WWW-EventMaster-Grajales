@@ -1,26 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState, useEffect } from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { EventsContext } from "../Events/EventsProvider";
 import ConfirmacionEventoCreado from "../../VentanaModal";
-import { PlacesContext } from "../Places/PlacesProvider";
 import interestListEvents from "../../../utils/Interests/interestListEvent";
-import { location } from "../../../utils/svgs";
 import { UserDataContext } from "../../Profile/UserDataProvider";
 
-const AddEvent = ({ setIsToggled, mapRef }) => {
-  // Lista de lugares para registrarlos en el evento
-  const { places } = useContext(PlacesContext);
+const AddEvent = ({ setIsToggled }) => {
 
   // Importar la función para actualizar lista de eventos una vez creado
-  const { fetchEvents } = useContext(EventsContext);
+  // const { fetchEvents } = useContext(EventsContext);
 
   // Importar datos del usuario
   const { userData } = useContext(UserDataContext)
 
   // Estado para guardar el lugar seleccionado
-  const [lugarSeleccionado, setLugarSeleccionado] = useState('')
+  // const [lugarSeleccionado, setLugarSeleccionado] = useState('')
 
   // Variable para mostrar confirmación de evento creado en un
   const [confirmacionEventoCreado, setConfirmacionEventoCreado] =
@@ -30,70 +24,11 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
 
   const [advertenciaIntereses, setAdvertenciaIntereses] = useState(false)
 
-  // Función para verificar si hay intereses
-  function compareInterests(intList1, intList2) {
-
-    // Flag
-    let found = false
-
-    // Se crea un array solo con los códigos de intereses del usuario
-    const listWithCodes = intList1.map((interest) => {
-      return interest.codigo_interes
-    })
-
-    // Iterar sobre los seleccionados para verificar si cumple
-    intList2.forEach(interest => {
-      if (listWithCodes.includes(interest.codigo_interes)) {
-        found = true
-      }
-    });
-
-    if (!found) {
-      setAdvertenciaIntereses(true)
-    }
-    return found
-  }
 
   const {
     register,
     formState: { errors },
-    handleSubmit,
   } = useForm();
-
-  const onSubmit = async (datosNuevoEvento) => {
-
-    const interesEventoArr = intereses.filter((i) => (
-      i.marcado
-    ))
-
-    if (lugarSeleccionado && interesEventoArr.length != 0 && compareInterests(userData.intereses, interesEventoArr)) {
-      datosNuevoEvento.lugar = lugarSeleccionado
-      await axios
-        .post("http://localhost:5000/api/evento/agregar", datosNuevoEvento, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-        })
-        .then(async (response) => {
-
-          await axios.post(
-            "http://localhost:5000/api/evento/intereses/modificar", interesEventoArr, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("token"),
-              eventoid: response.data.idEvento
-            },
-          }
-          );
-          await fetchEvents();
-          setConfirmacionEventoCreado(true);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
 
   useEffect(() => {
     async function getIntereses() {
@@ -129,15 +64,13 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
         }
       }}>
         <div className="w-full items-center text-center justify-center pb-3">
-          <h1 className="font-semibold text-indigo-700 text-base shadow-lg shadow-indigo-300 my-7 w-fit text-center mx-auto">
-            Crear un evento
+          <h1 className="font-semibold text-indigo-700 text-base my-7 w-fit text-center mx-auto">
+            Añade un evento
           </h1>
           {/* Inicio del formulario */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form >
             {/* Nombre del evento */}
-            <label className="text-sm font-semibold px-1">
-              Nombre del evento
-            </label>
+
             <input
               className={`w-full px-4 py-2 mb-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 text-sm`}
               placeholder="Nombre del evento"
@@ -147,9 +80,7 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
             />
             {errors.nombre && <p className="mb-3">{errors.nombre.message} *</p>}
             {/* Descripción */}
-            <label className="mb-2 text-sm font-semibold px-1">
-              Descripción
-            </label>
+
             <textarea
               type="text"
               placeholder="Descripcion del evento"
@@ -166,7 +97,6 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
             <div className="flex flex-col min-[550px]:flex-row min-[550px]:items-center justify-between mb-2">
               {/* Lugar */}
               <div className="basis-[50%] min-[550px]:mr-2">
-                <label className="text-sm font-semibold">Lugar</label>
                 <div className="relative border-0 bg-transparent">
 
                   {/* Botón para desplegar la lista de lugares */}
@@ -242,7 +172,6 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
 
               {/* Fecha */}
               <div className="mt-2 min-[550px]:mt-0 basis-[50%] min-[550px]:ml-2 flex-shrink">
-                <label className="text-sm font-semibold px-1">Fecha</label>
                 <input
                   className="w-full px-[6px] py-2 rounded-lg border-2 border-gray-200 text-sm focus:border-indigo-500"
                   type="date"
@@ -261,9 +190,6 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
             <div className="flex items-center justify-between px-0">
               {/* Hora de inicio */}
               <div className="mr-2">
-                <label className="mb-2 text-sm font-semibold">
-                  Hora inicio
-                </label>
                 <input
                   type="text"
                   placeholder="Hora de inicio"
@@ -282,9 +208,7 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
               </div>
               {/* Hora final */}
               <div className="ml-2">
-                <label className="mb-2 text-sm font-semibold px-1">
-                  Hora final
-                </label>
+
                 <input
                   type="text"
                   placeholder="Hora final"
