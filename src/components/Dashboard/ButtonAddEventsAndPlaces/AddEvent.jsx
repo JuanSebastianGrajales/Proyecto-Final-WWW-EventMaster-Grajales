@@ -235,32 +235,7 @@ const AddEvent = ({ setIsToggled, mapRef }) => {
                         }
                       }}
                     />
-                    {places.map((place) => (
-                      <li
-                        key={place.codigo_lugar}
-                        className="rounded-md hover:bg-indigo-100 cursor-pointer px-1 h-[40px] text-left"
-                        onClick={() => {
-                          const lugar = document.getElementById("campo-lugar");
-                          lugar.value = place.nombre;
-                          setLugarSeleccionado(place.codigo_lugar)
-                          mapRef.current.flyTo(JSON.parse(place.ubicacion), 15, {
-                            duration: 1, // Duración de la animación en segundos
-                            easeLinearity: 0.1, // Suavidad de la animación (0 a 1)
-                          });
-                          document.getElementById(
-                            "lista-lugares"
-                          ).style.display = "none";
-                        }}
-                      >
-                        {/* Contenedor flex */}
-                        <div className="h-full flex items-center">
-                          {/* Parte izquierda */}
-                          <div className="whitespace-nowrap overflow-x-hidden text-ellipsis">
-                            {location(20)} {place.nombre}
-                          </div>
-                        </div>
-                      </li>
-                    ))}
+
                   </ul>
                 </div>
               </div>
