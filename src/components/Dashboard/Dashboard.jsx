@@ -63,29 +63,6 @@ export default function Dashboard() {
 
       {/* Contenedor principal del mapa */}
       <div className="lg:basis-[70%] relative">
-        {userLocation && (
-          <MapContainer
-            key={`${userLocation.coordinates[0]}-${userLocation.coordinates[1]}-${userLocation.zoom}`}
-            ref={mapRef}
-            center={userLocation.coordinates}
-            zoom={userLocation.zoom}
-            scrollWheelZoom={false}
-            className="h-[63vh] lg:h-[89vh] shadow-[10px_10px_22px_-13px_rgba(0,0,0,0.4)]"
-          >
-
-            <MarkersComponent
-              isToggledMarker={isToggledMarker}
-              setIsToggledMarker={setIsToggledMarker}
-              markerAux={markerAux}
-              setMarkerAux={setMarkerAux}
-              setPlaceName={setPlaceName}
-              markerRefs={markerRefs} />
-
-            {/* Atribución */}
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
-          </MapContainer>)}
         <ButtonAddEventAndPlace
           isToggled={isToggled}
           setIsToggled={setIsToggled}
