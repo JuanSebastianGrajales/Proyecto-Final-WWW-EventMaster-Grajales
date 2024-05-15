@@ -32,9 +32,14 @@ export default function Dashboard() {
           isToggled={isToggled}
           setIsToggled={setIsToggled}
           placeName={placeName}
-          setPlaceName={setPlaceName}/>
+          setPlaceName={setPlaceName}
+        />
       </div>
-      
+      <div className="lg:basis-[70%] relative">
+        <div className="lg:basis-[70%] relative">
+
+        </div>
+      </div>
     </div>
-  )
+  );
 }

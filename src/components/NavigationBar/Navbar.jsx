@@ -7,24 +7,22 @@ export const Navbar = () => {
 
   return (
     // Contenedor navbar
-    <nav className="bg-gray-800 sticky top-0 z-[9999] flex items-center sm:justify-between p-1">
+    <nav className="bg-gray-800 flex flex-col justify-between h-full fixed left-0 top-0 z-[9999]">
       {/* Contenedor para reducir el ancho máximo de la navbar */}
       {/* <div className="max-w-7xl h-full mx-auto z-50 flex items-center border-2 border-red-500"> */}
 
       {/* Logo de la app */}
-      <div className="flex items-center flex-grow mx-1 gap-2">
+      <div className="flex items-center justify-center py-4">
         {/* {localStorage.getItem('token') && <NavbarSearch />} */}
         <div className="hidden md:block h-full">
           {" "}
           {/* Contenedor que muestra u oculta las opciones */}
-          <div className="flex items-center">
+          <div className="flex flex-col items-start justify-start flex-grow">
             <a
               href="/"
-              className={`hover:text-white ${
-                activePath === "/"
-                  ? "text-white bg-gray-700 rounded-md"
-                  : "text-gray-300 rounded-md hover:bg-gray-700"
-              } px-2 py-2 mx-1 text-sm font-medium`}
+              className={`text-white px-6 py-3 w-full ${
+                activePath === "/" ? "bg-gray-700" : "hover:bg-gray-700"
+              }`}
             >
               Inicio
             </a>
@@ -39,16 +37,13 @@ export const Navbar = () => {
             >
               Dashboard
             </a>
+            <NavbarUser />
           </div>
         </div>
       </div>
 
       {/* Opciones de la navbar y foto de perfil */}
-      <div className="flex items-center flex-shrink-0">
-        {/* Opciones de la navbar */}
-
-        {/* Fin opciones de la navbar */}
-        <NavbarUser />
+      <div className="flex items-center justify-center pb-4">
         {/* Botón controles de la navbar en móvil */}
         <button
           type="button"
@@ -62,7 +57,6 @@ export const Navbar = () => {
           {/* Icono del botón */}
           <FontAwesomeIcon icon={faBars} />
         </button>
-        {/* </div> */}
       </div>
 
       {/* Ppciones de la navbar en móvil */}

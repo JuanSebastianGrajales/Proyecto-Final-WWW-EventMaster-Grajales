@@ -28,7 +28,7 @@ export default function ButtonAddEventAndPlace({
     <>
 
       <button
-        className="rounded w-[100px] h-[60px] absolute bottom-4 left-4 z-[400] bg-[#00A5CF] hover:bg-[#007390] text-white p-0"
+        className="rounded w-[100px] h-[60px] absolute left-4 z-[400] bg-[#00A5CF] hover:bg-[#007390] text-white p-0"
         onClick={handleToggle}
       >
         Agregar evento
