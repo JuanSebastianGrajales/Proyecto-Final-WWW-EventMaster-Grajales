@@ -1,12 +1,8 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/NavigationBar/Navbar.jsx";
 import Register from "./components/Register/Register.jsx";
 import Home from "./components/Home/Home.jsx";
-import Calendar from "./components/Calendar.jsx";
 import LoginUser from "./components/Login.jsx";
-import Contact from "./components/Contact.jsx";
-import ProtectedRoute from "./components/Auth/ProtectedRoute.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import ProfileConfig from "./components/Profile/ProfileConfig.jsx";
@@ -33,7 +29,6 @@ function App() {
                 <Routes>
                   <Route index element={<Home />} />
                   <Route path="/" element={<Home />} />
-                  <Route path="/contact" element={<Contact />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<LoginUser />} />
                   <Route
@@ -42,7 +37,6 @@ function App() {
                   />
                   <Route path="/change-pass" element={<ChangePass/>} />
                   <Route path="/recovertoken" element={<RecoverToken />} />
-                  <Route path="/calendar" element={<Calendar />} />
                   <Route
                     path="/profile"
                     element={

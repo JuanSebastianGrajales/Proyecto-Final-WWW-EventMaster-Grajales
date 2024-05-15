@@ -55,7 +55,7 @@ function NavbarSearch() {
           className="px-10 py-2 w-full rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
           onClick={(e) => {
             fetchAll()
-            const listaEventosLugares = document.getElementById("lista-eventos-lugares")
+            // const listaEventosLugares = document.getElementById("lista-eventos-lugares")
             const campoBusqueda = e.target
             if (!campoBusqueda.value) {
               setSearchDialog(!searchDialog)

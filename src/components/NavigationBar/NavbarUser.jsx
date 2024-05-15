@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { UserDataContext } from "../Profile/UserDataProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 function NavbarUser() {
   const { userData } = useContext(UserDataContext)
@@ -20,21 +22,10 @@ function NavbarUser() {
         onClick={toggleDropdown}
         className="flex items-center text-gray-300 hover:text-white px-3 py-1 rounded-md text-sm font-medium focus:outline-none z-50"
       >
-        {!profilePicture ? <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-[50px] z-50"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
+        {!profilePicture ? <span className="">
+          <FontAwesomeIcon
+          icon={faUser}
+          style={{marginTop: "2px", height: "20px", border: "3px solid", borderRadius: "3vh", padding: "8px"}}/>
         </span>
           :
           <img src={profilePicture} alt="" className="rounded-full h-[50px] border-gray-400" />
